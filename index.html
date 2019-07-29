@@ -13,11 +13,26 @@
     <link rel="stylesheet" href="air-datepicker/datepicker.min.css" />
   </head>
   <body>
-    <h1>PIGNOSE Calendar</h1>
+    <h1>AIR DATEPICKER</h1>
     <div>
-      <input type="text" class="datepicker-here" data-language="en" />
+      <input 
+        id="my-calendar"
+        type="text" 
+        class="datepicker-here" 
+        data-timepicker="true"
+        data-language="en"
+      />
     </div>
 
-    <script></script>
+    <script>
+    $(function(){
+
+      $('#my-calendar').datepicker({
+        minDate: new Date() // 금일 이후 
+      })
+
+      $('#my-calendar').val(new Date().toLocaleDateString());
+    })
+    </script>
   </body>
 </html>
