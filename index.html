@@ -13,51 +13,60 @@
     <link rel="stylesheet" href="air-datepicker/datepicker.min.css" />
     <style>
       /* 요일명 */
-      .datepicker--day-name{
+      .datepicker--day-name {
         color: brown;
       }
 
       /* 오늘 날짜 */
-      .datepicker--cell.-current-{
+      .datepicker--cell.-current- {
         color: brown;
       }
-      .datepicker--cell.-current-.-selected-{
+      .datepicker--cell.-current-.-selected- {
         background-color: brown;
         color: #fff;
       }
 
       /* 선택한 날짜 */
-      .datepicker--cell.-selected-{
+      .datepicker--cell.-selected- {
         background-color: brown;
         color: #fff;
       }
-      .datepicker--cell.-selected-:hover{
+      .datepicker--cell.-selected-:hover {
         background-color: brown;
         color: #fff;
       }
-
     </style>
   </head>
   <body>
     <h1>AIR DATEPICKER</h1>
     <div>
-      <input 
+      <input
         id="my-calendar"
-        type="text" 
-        class="datepicker-here" 
-        data-language="en"
+        type="text"
+        class="datepicker-here"
+        data-language="ko"
       />
     </div>
 
     <script>
-    $(function(){
+      $(function() {
+        $("#my-calendar").datepicker({
 
-      $('#my-calendar').datepicker({
-        minDate: new Date() // 금일 이후 
-      })
+          dateFormat: 'yy-mm-dd',
+          minDate: new Date(), // 금일 이후
+          onShow: function(inst){
+            var info = $(this).val(inst);
+            console.log('onShow: ', info);
+          },
+          onSelect: function(dateText, inst) {
+            // dateText:년-월-일, inst: new Date()
+            console.log(dateText, ', ', inst);
+          }
+        });
 
-      $('#my-calendar').val(new Date().toLocaleDateString());
-    })
+        var d = new Date().toLocaleDateString();
+        $("#my-calendar").val(d);
+      });
     </script>
   </body>
 </html>
